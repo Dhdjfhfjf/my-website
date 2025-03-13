@@ -6,6 +6,7 @@ header {
     background-color: #231c1a;
     height: 80px;
     width: 100%;
+    position: fixed;
 }
 h1{
     color: black;
@@ -39,7 +40,7 @@ header a:hover{
 .news {
     background-color: rgb(225, 197, 159);
     color: black;
-    height: 95vh;
+    height: 105vh;
     background-image: url(image/5ff917a0991228c0027b3ef819cbf4d1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,6 +52,7 @@ header a:hover{
 }
 .news h2{
     font-size: 60px;
+    margin-top: 60px;
 }
 .news p{
     color: #231c0c;
@@ -104,4 +106,99 @@ footer {
 .info p{
     text-align: center;
     line-height: 2em;
+}
+.product{
+    display: flex;
+    background-color: #d2bebe;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 50px 80px;
+}
+.product div{
+    width: 300px;
+    text-align: center;
+}
+.product img{
+    width: 100%;
+    border-radius: 10px;;
+}
+.product h3{
+    font-size: 20px;
+    margin: 20px 0;
+}
+.product p{
+    font-size: 14px;
+    line-height: 1.6em;
+}
+.mewsletter{
+    background-color: #485652;
+    color: white;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mewsletter p{
+    margin-bottom: 20px;
+}
+.mewsletter input, .mewsletter button{
+    background-color: transparent;
+    color: white;
+    border: 1px solid #949d9a;
+    padding: 10px;
+    border-radius: 5px;
+}
+.menu{
+    display: none;
+    display: block;
+    background-color: white;
+    font-size: 35px;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    border: none;
+    cursor: pointer;
+}
+.mewsletter input{
+    width: 200px;
+    margin-right: 15px;
+}
+.mewsletter button{
+    width: 80px;
+    cursor: pointer;
+}
+/* 響應式設計 */
+@media screen  and (max-width: 768px){
+    header ul{
+        display: none;
+    }
+    header h1{
+        left: 50%;
+        transform: translateX(-50%);
+    }    
+    .news h2{
+        font-size: 40px;
+    }
+    .menu{
+        display: block;
+    }
+    .shop{
+        flex-direction: column;
+        width: 100%;
+    }
+    .info{
+        width: 100%;
+        padding: 40px o;
+    }
+    .info h2{
+        flex-direction: column;
+        padding: 40px 0;
+    }
+    .product{
+        flex-direction: column;
+        padding: 40px 0;
+    }
+    .product div{
+        margin-bottom: 30px;
+    }
 }
