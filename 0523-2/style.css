@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #e4e7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-card {
+    background-color: #f7f7f7;
+    width: 100%;
+    max-width: 1000px; 
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    border: 1px solid #cccccc;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #63666a;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #4a4d50;
+}
+
+.brand-zone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.brand-zone .pokeball-icon {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+.brand-zone .site-logo {
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.brand-zone .sub-logo {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-left: 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #cccccc;
+    font-weight: bold;
+    margin-left: 25px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+
+.navbar a:hover {
+    color: #ffffff;
+}
+
+.card-body {
+    background-color: #eef0f2;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.sidebar {
+    width: 310px; 
+    flex-shrink: 0;
+    border-right: 1px solid #d1d5db;
+    padding-right: 25px;
+}
+
+.sidebar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 3px solid #e1e4e8;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0,0,0,0,03);
+}
+
+.status-box {
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #333333;
+}
+
+.tags {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.tags span {
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+    background-color: #e2e5e9;
+    color: #4a4a4a;
+    padding: 6px 2px;
+    border-radius: 6px;
+    font-size: 11px;
+    border: 1px solid #d1d5db;
+    white-space: nowrap;
+}
+
+.intro-text {
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.3;
+}
+
+.content {
+    flex-grow: 1; 
+    padding-left: 35px;
+}
+
+.category-bar {
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 4px;
+    margin-bottom: 18px;
+}
+
+.category-title {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #63666a;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
+
+.welcome-section {
+    margin-bottom: 35px;
+}
+
+.main-title {
+    font-size: 26px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #222222;
+    font-weight: 800;
+}
+
+.quote {
+    font-style: italic;
+    color: #777777;
+    font-size: 14px;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    background-color: #ffffff; 
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #e1e4e8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.info-row {
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #edf0f2;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    display: block; 
+    font-size: 11px;
+    font-weight: 800;
+    color: #888888;
+    letter-spacing: 1px;
+    margin-bottom: 6px; 
+}
+
+.info-value {
+    display: block; 
+    font-size: 13.5px;
+    color: #333333;
+    line-height: 1.6;
+}
+/* ==========================================================================
+   Likes 頁面：分頁切換（路徑徹底修正版 🎯）
+   ========================================================================== */
+
+/* 1. 把 HTML 頂部的 radio 按鈕徹底藏起來 */
+input[name="likes-tab"] {
+    display: none;
+}
+
+/* 2. 左側標題區 */
+.page-title-zone {
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #63666a;
+}
+.page-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: #63666a;
+    display: block;
+    line-height: 1;
+}
+.page-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #888888;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+/* 3. 選單按鈕與滑鼠效果 */
+.likes-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.menu-item {
+    display: block;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    color: #555555;
+    background-color: #e2e5e9;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+.menu-item:hover {
+    background-color: #63666a;
+    color: #ffffff;
+    border-color: #63666a;
+    padding-left: 20px;
+}
+
+/* 🧙‍♂️ 魔法連動一：【修正路徑】按鈕點擊後維持高亮 */
+#tab-fandom:checked ~ .sidebar .item-fandom,
+#tab-character:checked ~ .sidebar .item-character,
+#tab-music:checked ~ .sidebar .item-music,
+#tab-games:checked ~ .sidebar .item-games,
+#tab-dislike:checked ~ .sidebar .item-dislike {
+    background-color: #ffffff;
+    color: #222222;
+    border-color: #cccccc;
+    font-weight: 800;
+}
+
+/* 4. 右側愛好顯示區 */
+.likes-display-area {
+    position: relative;
+    width: 100%;
+}
+
+/* 🧙‍♂️ 魔法連動二：平常把所有的愛好區塊通通隱藏 */
+.likes-block {
+    display: none;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #e1e4e8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+.block-tag {
+    font-size: 10px;
+    font-weight: 800;
+    color: #a0a0a0;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+.block-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #222222;
+    margin-bottom: 12px;
+}
+.block-text {
+    font-size: 13.5px;
+    color: #444444;
+    line-height: 1.7;
+}
+
+/* 🧙‍♂️ 魔法連動三：【修正路徑】當選單被勾選時，穿過 .content 讓對應的區塊現形 */
+#tab-fandom:checked ~ .content .block-fandom,
+#tab-character:checked ~ .content .block-character,
+#tab-music:checked ~ .content .block-music,
+#tab-games:checked ~ .content .block-games,
+#tab-dislike:checked ~ .content .block-dislike {
+    display: block !important;
+}
+.likes-header-img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    margin: 0 auto 15px;
+    display: block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0,02);
+}
+/* ==========================================================================
+   手機版響應式自動切換：吸頂式導覽條（操作零奔波、絕不拉長版 📱✨）
+   ========================================================================== */
+
+   @media (max-width: 768px) {
+    
+    /* 1. 身體高度放開，解除牢籠 */
+    body {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 5px;
+        display: block;
+    }
+
+    /* 2. 大卡片寬度拉滿，高度放開 */
+    .main-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        box-sizing: border-box;
+        border-radius: 12px; /* 手機版圓角稍微縮小比較精緻 */
+    }
+
+    /* 3. 網頁大標頭改為直排 */
+    .card-header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        height: auto !important;
+        padding: 15px 10px;
+    }
+    .navbar {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    /* 4. 核心內容大箱子改成直排 */
+    .card-body {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 0 !important; /* 拔掉邊距，讓選單可以滿版吸頂 */
+        gap: 0 !important;
+    }
+
+    /* 5. 🧙‍♂️ 核心魔法：讓左側選單在手機上橫過來，並且黏在螢幕最頂端！ */
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: sticky;      /* 👈 磁鐵吸頂魔法 */
+        top: 0;                /* 👈 黏在最上方 */
+        z-index: 999;          /* 👈 確保它永遠蓋在內容上面，不會被遮住 */
+        background-color: #f4f5f7; /* 跟大背景一樣的顏色，或者是純白 #ffffff */
+        padding: 10px 15px !important;
+        border-bottom: 1px solid #e1e4e8;
+        box-sizing: border-box;
+    }
+
+    /* 手機版把 02 COLLECTION 這種大標題藏起來，省空間 */
+    .page-title-zone, .likes-header-img {
+        display: none !important;
+    }
+
+    /* 6. 選單按鈕改成「橫向並排」，而且如果按鈕太多可以左右用手指滑動 */
+    /* 6. 🛠️ 選單按鈕：手機版全攤開自動換行（免滑動、秒點擊版） */
+    .likes-menu {
+        flex-direction: row !important; /* 維持橫向並排 */
+        flex-wrap: wrap !important;     /* 🧙‍♂️ 魔法關鍵：寬度不夠時自動「折行」到下一排 */
+        overflow-x: visible !important; /* 拔掉討人厭的橫向滑動 */
+        white-space: normal !important; /* 允許文字與方塊正常換行 */
+        gap: 6px;                       /* 按鈕與按鈕之間的微小間距 */
+        padding: 5px 0;
+        width: 100%;
+    }
+
+    .menu-item {
+        padding: 8px 10px !important;  /* 微調內邊距，更適合手機手指點擊 */
+        font-size: 10.5px !important;  /* 稍微縮小一點點字體，確保排版緊湊 */
+        flex: 1 1 calc(33.33% - 6px);  /* 🧙‍♂️ 魔法比例：讓它自動平分寬度（一排塞 3 個） */
+        text-align: center;            /* 文字乖乖置中 */
+        box-sizing: border-box;
+        white-space: nowrap;           /* 按鈕內部的字（如 ▶ MUSIC）不准自己斷行 */
+    }
+
+    /* 7. 右側主內容區：乖乖待在選單下方 */
+    .content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px 15px !important;
+        box-sizing: border-box;
+    }
+    /* 8. 🛠️ 手機版精簡魔法：直接隱藏右側內容區的突兀大小標題 */
+    .welcome-section {
+        display: none !important; /* 👈 在手機版上把大小標題與小短句完全變不見！ */
+    }
+
+    /* 稍微把內容區的頂部間距調好看一點 */
+    .likes-display-area {
+        margin-top: 15px;
+    }
+
+    /* OCs 卡片在手機上也改成直排 */
+    .oc-clean-layout {
+        flex-direction: column !important;
+        gap: 15px;
+        width: 100% !important;
+    }
+    .oc-profile-box {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}
+/* 1. 電腦版與預設：當前頁面按鈕維持高亮 */
+.likes-menu .menu-item.active {
+    background-color: #ffffff;
+    color: #222222;
+    border-color: #cccccc;
+    font-weight: 800;
+}
+
+/* 2. 手機響應式：當前頁面按鈕同步高亮 */
+@media (max-width: 768px) {
+    .likes-menu .menu-item.active {
+        background-color: #ffffff !important;
+        color: #222222 !important;
+        border-color: #cccccc !important;
+        font-weight: 800 !important;
+    }
+}
