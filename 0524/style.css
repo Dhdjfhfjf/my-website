@@ -1,0 +1,187 @@
+/* ==========================================================================
+   📼 1980s 復古卡式錄音機風格 CASSETTE PLAYER (實體機械按鍵操控)
+   ========================================================================== */
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Courier New", "Courier", "Klee One", "Noto Serif TC", monospace;
+}
+
+/* 全局背景：霓虹迪斯可深夜的迷幻深色調 */
+body {
+    background-color: #1a1a24; /* 深霓虹夜色 */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 6px; /* 模擬復古 CRT 螢幕掃描線 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    min-height: 100vh;
+    padding: 15px;
+}
+
+/* 📻 錄音機本體外框 */
+.player-container {
+    background: #2d2d3a; /* 磨砂黑塑料機身 */
+    border: 4px solid #15151e;
+    border-radius: 12px;
+    box-shadow: 
+        0 0 0 4px #3d3d4f,
+        0 25px 50px rgba(0, 0, 0, 0.6);
+    max-width: 480px; /* 緊湊型錄音帶尺寸，完美適配手機螢幕 */
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 📼 錄音帶艙門（中央展示區） */
+.cassette-deck {
+    background: #191922; /* 透過透明艙門看進去的深色內部 */
+    border: 3px solid #15151e;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+/* 錄音帶本體 */
+.tape-body {
+    background: #e4dcc9; /* 經典復古 TDK 錄音帶米白外殼 */
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #c5bba4;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 📸 錄音帶中心標籤（大圖完美變身為錄音帶貼紙！） */
+.tape-label-zone {
+    width: 100%;
+    background: #892c2a; /* 標籤上的復古紅條紋 */
+    border: 2px solid #15151e;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 70px 1fr; /* 左邊放圓形縮小大圖（齒輪孔），右邊寫字 */
+    gap: 12px;
+    align-items: center;
+}
+
+.tape-gear-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* 強制變圓形，模擬錄音帶轉動齒輪 */
+    border: 4px dashed #15151e; /* 齒輪咬合感 */
+    overflow: hidden;
+    background: #000;
+}
+
+.tape-gear-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🖊️ 錄音帶上手寫的曲目資訊（內文區） */
+.tape-handwritten-text {
+    color: #f4f1ea;
+    font-size: 13px;
+}
+
+.tape-title {
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px dashed #f4f1ea;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* 歌詞本/手記內容區（下方歌詞紙） */
+.lyrics-sheet {
+    width: 100%;
+    background: #fff;
+    margin-top: 12px;
+    border: 1px solid #d3cbb6;
+    padding: 12px;
+    font-size: 13px;
+    color: #222;
+    line-height: 1.6;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.lyrics-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.lyrics-label { font-weight: bold; color: #555; }
+.lyrics-value { color: #892c2a; font-weight: bold; }
+
+/* 🎛️ 實體錄音機機械按鍵（取代傳統導覽按鈕） */
+.player-buttons {
+    display: flex;
+    gap: 8px;
+    background: #202029;
+    padding: 8px;
+    border-radius: 6px;
+    border-top: 2px solid #15151e;
+}
+
+.mech-btn {
+    flex: 1;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #5a5a6e, #3a3a4a); /* 鍍鉻金屬按鍵質感 */
+    border: 2px solid #15151e;
+    border-radius: 4px;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 #15151e; /* 未按下時的立體高度 */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+/* 模擬機械按鍵壓下去的動態效果 */
+.mech-btn:active, .mech-btn.active {
+    background: linear-gradient(to bottom, #222, #444);
+    box-shadow: 0 0px 0 #15151e;
+    transform: translateY(4px); /* 按鍵陷下去 */
+}
+
+/* 錄音鍵特製紅色 */
+.mech-btn.active {
+    color: #ff4a4a;
+    border-color: #ff4a4a;
+}
+
+.btn-icon {
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+/* 📱 手機免滑動優化（極致緊湊） */
+@media (max-width: 768px) {
+    body { padding: 5px; }
+    .player-container { padding: 12px; gap: 12px; }
+    .cassette-deck { padding: 10px; }
+    .tape-body { padding: 8px; }
+    .tape-label-zone { gap: 8px; padding: 6px; }
+    .tape-gear-photo { width: 55px; height: 55px; }
+    .tape-title { font-size: 14px; }
+    .lyrics-sheet { padding: 8px; font-size: 12px; margin-top: 8px; }
+    .mech-btn { font-size: 10px; padding: 8px 0; }
+}

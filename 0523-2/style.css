@@ -1,595 +1,249 @@
 /* ==========================================================================
-   🏫 BITTER - 日系復古黑板書風格（一體化防重疊優化版）
+   🏫 復古黑板實體化風格 CLASSROOM BLACKBOARD (粉筆按鍵免滑動一體化)
    ========================================================================== */
 
    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, "PingFang TC", "Helvetica Neue", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    font-family: "Klee One", "Noto Serif TC", "Yu Mincho", "標楷體", serif;
 }
 
-/* 全局背景：黃昏教室牆壁的溫暖和紙色 */
+/* 全局背景：深夜空無一人的教室木地板與微光 */
 body {
-    background-color: #f4ece1; 
-    background-image: 
-        linear-gradient(rgba(30, 61, 47, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 61, 47, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background-color: #1e1a15; /* 深色木質調 */
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    min-height: 100vh;
+    padding: 15px;
+}
+
+/* 🧱 實體實木邊框黑板總容器 */
+.blackboard-container {
+    background: #1e352f; /* 古典深綠色黑板面 */
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0); /* 隱約的粉筆灰感 */
+    background-size: 8px 8px;
+    border: 12px solid #5a3d28; /* 厚重的復古胡桃木黑板邊框 */
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 40px rgba(0,0,0,0.7), /* 黑板邊緣陰影 */
+        0 4px 0 #3a2518, /* 模擬木框下層厚度 */
+        0 20px 50px rgba(0, 0, 0, 0.6);
+    max-width: 760px;
+    width: 100%;
+    padding: 25px 25px 40px 25px; /* 下方留空間給粉筆槽 */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🖍️ 黑板最底部的「實木粉筆槽與彩色粉筆」（導覽按鈕） */
+.chalk-tray {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    background: #462f1e; /* 凸出的粉筆槽木條 */
+    border-top: 3px solid #2d1d12;
+    padding: 4px 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 40px 20px;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-/* 主卡片大外框：學校大黑板與實木邊框 */
-.main-card {
-    background: #1e3d2f; 
-    width: 100%;
-    max-width: 1050px; 
-    border-radius: 4px; 
-    padding: 35px;
-    border: 12px solid #8c6239; 
-    outline: 2px solid #5c3a21;
-    outline-offset: -12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+.chalk-btn {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 2px 8px 8px 2px; /* 模擬粉筆圓柱體形狀 */
+    text-align: center;
+    transition: all 0.15s ease;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+    display: inline-block;
 }
 
-/* 網頁頂部標頭：白色粉筆虛線 */
-.card-header {
-    background: transparent; 
-    padding: 0 0 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px dashed rgba(248, 249, 250, 0.25); 
-    margin-bottom: 35px;
+/* 四種不同顏色的粉筆樣式（取代死板按鈕） */
+.chalk-blue   { background: #a2d2ff; color: #1e352f; border-bottom: 3px solid #72a2cf; }
+.chalk-green  { background: #c7f9cc; color: #1e352f; border-bottom: 3px solid #97c99c; }
+.chalk-yellow { background: #ffea00; color: #1e352f; border-bottom: 3px solid #c7b800; }
+.chalk-red    { background: #ffadad; color: #1e352f; border-bottom: 3px solid #cf7d7d; }
+
+.chalk-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 1px 4px 5px rgba(0,0,0,0.5);
 }
 
-.brand-zone {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+/* 當粉筆被拿起來寫字時（啟動狀態）：粉筆會推入粉筆槽、變短且發光 */
+.chalk-btn.active {
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 3px rgba(0,0,0,0.6);
+    border-bottom: none;
+    filter: brightness(1.1);
+    outline: 2px dashed rgba(255,255,255,0.6);
 }
 
-.brand-zone .pokeball-icon {
-    font-size: 14px;
-    color: #fae09c; 
+/* 📝 黑板板書主結構 */
+.blackboard-content {
+    display: grid;
+    grid-template-columns: 190px 1fr; /* 左側貼磁鐵週報大圖，右側全值日生手寫板書 */
+    gap: 30px;
+    align-items: start;
 }
 
-.brand-zone .site-logo {
-    font-family: "Klee One", "Yomogi", "KaiTi", "標楷體", serif;
-    font-size: 21px;
-    font-weight: 600;
-    color: #f8f9fa; 
-    letter-spacing: 2px;
+/* 📸 左側：用圓形磁鐵吸在黑板上的學生相片（大圖完美變身） */
+.blackboard-photo {
+    background: #fff;
+    padding: 8px 8px 24px 8px; /* 下方留白做拍立得或週報感 */
+    box-shadow: 3px 5px 12px rgba(0,0,0,0.3);
+    position: relative;
+    transform: rotate(-2deg); /* 照片歪歪的真實感 */
+    border: 1px solid #ddd;
 }
 
-.sub-logo {
-    font-family: "Klee One", "Yomogi", "KaiTi", "標楷體", serif;
-    font-size: 12px;
-    color: #1e3d2f;
-    background: #fae09c; 
-    padding: 4px 12px;
-    border-radius: 2px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    white-space: nowrap;
+/* 磁鐵扣效果 */
+.blackboard-photo::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: #892c2a; /* 紅色強力磁鐵 */
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-/* 核心佈局 */
-.card-body {
-    background: transparent !important;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 35px;
-}
-
-/* 左側區域 */
-.sidebar {
-    width: 290px; 
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 30px; 
-}
-
-/* 純 CSS 黑板手貼相片效果 */
-.sidebar-img-zone {
-    position: relative; 
-    padding: 10px;
-    width: 100%; 
-    display: block;
-    transform: rotate(-2deg); 
-}
-
-.sidebar-img-zone img {
+.blackboard-photo img {
     width: 100%;
     height: auto;
-    border-radius: 2px; 
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
-    border: 5px solid #fffdf9; 
-    box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.35); 
 }
 
-.sidebar-img-zone::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 75px;
-    height: 25px;
-    background: rgba(250, 240, 215, 0.5); 
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    transform: rotate(-35deg);
-    border-left: 1px dashed rgba(255,255,255,0.5); 
-    border-right: 1px dashed rgba(255,255,255,0.5);
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    z-index: 2;
+/* 🖊️ 右側：白色粉筆純手寫板書區 */
+.chalk-writing-zone {
+    color: rgba(255, 255, 255, 0.85); /* 粉筆字自帶的微微透明感 */
+    text-shadow: 0 0 2px rgba(255,255,255,0.3);
 }
 
-.sidebar-img-zone::after {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    width: 70px;
-    height: 25px;
-    background: rgba(250, 240, 215, 0.45);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    transform: rotate(-25deg);
-    border-left: 1px dashed rgba(255,255,255,0.5);
-    border-right: 1px dashed rgba(255,255,255,0.5);
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    z-index: 2;
-}
-
-/* ==========================================================================
-   🟢 核心修復：大螢幕電腦版選單（強制單層框，防止重影）
-   ========================================================================== */
-.likes-menu {
-    display: flex;
-    flex-direction: column !important; 
-    gap: 12px;
-    width: 100%;
-}
-
-.menu-item {
-    font-family: monospace, "Microsoft JhengHei", sans-serif;
-    display: block;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 12px 16px;
-    border-radius: 2px; 
-    text-align: left;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    color: #f8f9fa;
-    background-color: transparent; 
-    border: 1px solid rgba(248, 249, 250, 0.4) !important; 
-    letter-spacing: 0.5px;
-    box-shadow: none !important;
-}
-
-.menu-item:hover {
-    background-color: rgba(248, 249, 250, 0.1);
-    border-color: #f8f9fa !important;
-    color: #fae09c; 
-    padding-left: 22px; 
-}
-
-.likes-menu .menu-item.active {
-    background-color: #f8f9fa !important; 
-    color: #1e3d2f !important;
-    font-weight: 900;
-    border-color: #f8f9fa !important;
-}
-
-/* 右側內容區 */
-.content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.welcome-section {
-    padding: 5px 0;
-}
-
-.category-bar .category-title {
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    font-weight: bold;
-    color: #95d5b2; 
-    letter-spacing: 2px;
-}
-
-.main-title {
-    font-size: 32px;
-    font-weight: 900; 
-    color: #f8f9fa; 
-    margin-top: 6px;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-}
-
-.quote {
-    font-size: 14px;
-    font-weight: 700;
-    color: #fae09c; 
-    letter-spacing: 0.5px;
-}
-
-.likes-block {
-    background: transparent; 
-    position: relative;
-    padding: 30px 0 !important; 
-    width: 100%;
-    border-top: 2px double rgba(248, 249, 250, 0.3);
-    border-bottom: none; 
-}
-
-.block-tag {
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: #1e3d2f;
-    background: #95d5b2; 
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 2px;
+.blackboard-header {
     margin-bottom: 20px;
-}
-
-.block-title {
-    font-size: 22px;
-    font-weight: 900; 
-    color: #fae09c; 
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-}
-
-.block-text {
-    font-size: 15px; 
-    font-weight: 700; 
-    color: rgba(248, 249, 250, 0.95); 
-    line-height: 2.1;
-    letter-spacing: 0.8px;
-}
-
-/* ==========================================================================
-   關於我小檔案排版 (Profile Grid)
-   ========================================================================== */
-.profile-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.profile-item {
-    display: flex;
-    align-items: baseline;
-    border-bottom: 1px dashed rgba(248, 249, 250, 0.15); 
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.4); /* 粉筆畫的虛線 */
     padding-bottom: 10px;
 }
 
-.profile-label {
-    font-family: monospace;
+.blackboard-tag {
     font-size: 12px;
+    color: #ffea00; /* 黃色粉筆重點字 */
+    letter-spacing: 3px;
     font-weight: 700;
-    color: #95d5b2; 
-    width: 140px; 
-    flex-shrink: 0;
-    letter-spacing: 1px;
-}
-
-.profile-value {
-    font-size: 15px;
-    font-weight: 700;
-    color: #f8f9fa; 
-    letter-spacing: 0.5px;
-}
-
-/* 社群連結 */
-.profile-links-zone {
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px dashed rgba(248, 249, 250, 0.15); 
-}
-
-.links-label {
-    font-family: monospace;
-    font-size: 12px;
-    font-weight: 700;
-    color: #95d5b2; 
-    width: 140px;
-    flex-shrink: 0;
-    letter-spacing: 1px;
-}
-
-.links-wrapper {
-    display: flex;
-    gap: 20px; 
-}
-
-.sns-link {
-    font-size: 14px;
-    font-weight: 700;
-    color: rgba(248, 249, 250, 0.8); 
-    text-decoration: none;
-    padding: 4px 12px;
-    border: 1px solid rgba(248, 249, 250, 0.3); 
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.sns-link:hover {
-    color: #fae09c; 
-    border-color: #fae09c;
-    background: rgba(250, 224, 156, 0.08);
-}
-
-/* 純文字板書筆記流 (坑位作品列表) */
-.board-note-section {
-    margin-bottom: 40px;
-}
-
-.board-note-title {
-    font-family: "Klee One", "Yomogi", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #95d5b2; 
-    margin-bottom: 16px;
-    letter-spacing: 1px;
-}
-
-.board-text-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 12px 25px; 
-    padding-left: 8px;
-}
-
-.work-link-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: rgba(248, 249, 250, 0.85); 
-    letter-spacing: 0.5px;
-    line-height: 1.5;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; 
-    transition: color 0.15s ease;
-    cursor: default;
-}
-
-.work-link-text::before {
-    content: "・";
-    color: rgba(248, 249, 250, 0.4);
-    margin-right: 4px;
-    font-weight: bold;
-}
-
-.work-link-text:hover {
-    color: #fae09c; 
-}
-
-/* ==========================================================================
-   🎨 全新加載：創作者孩子（OC）帶圖極簡樣式
-   ========================================================================== */
-.oc-simple-list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px; 
-    margin-top: 15px;
-}
-
-.oc-simple-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px; 
-    border-bottom: 1px dashed rgba(248, 249, 250, 0.1); 
-    padding-bottom: 20px;
-}
-
-.oc-simple-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.oc-s-avatar {
-    width: 90px;
-    height: 90px;
-    border: 2px solid #fffdf9; 
-    background: rgba(248, 249, 250, 0.05); 
-    border-radius: 2px;
-    overflow: hidden;
-    flex-shrink: 0; 
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.oc-s-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-.oc-s-content {
-    flex-grow: 1;
-}
-
-.oc-s-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fae09c;
-    letter-spacing: 0.5px;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.oc-s-desc {
-    font-size: 14px;
-    font-weight: 700;
-    color: rgba(248, 249, 250, 0.85); 
-    line-height: 1.8;
-    letter-spacing: 0.6px;
     margin-bottom: 4px;
 }
 
-/* ==========================================================================
-   📱 【 真正的 RWD 手機與全響應式斷點 】
-   ========================================================================== */
-
-@media (max-width: 900px) {
-    .board-text-links {
-        grid-template-columns: repeat(2, 1fr); 
-    }
+.blackboard-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
 }
 
+/* 粉筆手繪條目盒 */
+.chalk-list-box {
+    margin-bottom: 15px;
+}
+
+.chalk-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 4px;
+    border-bottom: 1px rgba(255,255,255,0.15) dashed;
+    font-size: 14px;
+}
+
+.chalk-label {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chalk-value {
+    color: #a2d2ff; /* 藍色粉筆字 */
+    font-weight: 700;
+}
+
+/* 坑單專用：粉筆手繪雙欄小格子 */
+.chalk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chalk-grid-cell {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    border: 1px dashed rgba(255,255,255,0.3);
+    padding: 7px;
+    text-align: center;
+}
+
+.blackboard-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+}
+
+/* 📱 ＝手機黑板免滑動究極適配（解決大圖卡住、按鈕亂飄的通病）＝ */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
-        background-color: #ebdcd0; 
+        padding: 5px;
     }
 
-    .main-card {
-        border-width: 6px; 
-        padding: 16px;
+    .blackboard-container {
+        padding: 15px 12px 38px 12px;
+        border-width: 6px;
     }
 
-    .card-header {
-        margin-bottom: 20px;
-        padding-bottom: 10px;
+    /* 粉筆槽槽位壓縮，確保不爆開 */
+    .chalk-tray {
+        gap: 6px;
+        padding: 3px 10px;
     }
-    
-    .brand-zone .site-logo {
-        font-size: 18px;
-    }
-    
-    .sub-logo {
+
+    .chalk-btn {
         font-size: 11px;
-        padding: 2px 8px;
+        padding: 3px 6px;
+        border-radius: 2px 6px 6px 2px;
     }
 
-    .card-body {
-        flex-direction: column !important; 
-        gap: 15px;
+    /* 結構改為上下，但精細控制吸在黑板上的相片尺寸，騰出舞台給文字 */
+    .blackboard-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .sidebar {
-        width: 100% !important;
-        gap: 15px;
-    }
-
-    .sidebar-img-zone {
-        transform: rotate(-1deg); 
-        width: 100%; 
-        max-width: 100%; 
-        margin: 0 auto !important;
-    }
-
-    .sidebar-img-zone img {
-        border-width: 4px;
-    }
-
-    .likes-menu {
-        flex-direction: row !important; 
-        flex-wrap: wrap !important; 
-        gap: 6px !important;
-    }
-
-    .menu-item {
-        flex: 1 1 calc(50% - 3px) !important; 
-        padding: 10px 4px !important; 
-        font-size: 13px !important;
-        text-align: center;
-        white-space: nowrap; 
+    .blackboard-photo {
+        max-width: 95px; /* 大幅縮小大圖，確保第一螢幕完美看全 */
+        margin: 0 auto;  /* 居中 */
+        padding: 4px 4px 14px 4px;
+        transform: rotate(0deg);
     }
     
-    .menu-item:nth-child(5) {
-        flex: 1 1 100% !important; 
+    .blackboard-photo::before {
+        width: 10px;
+        height: 10px;
+        top: -5px;
     }
 
-    .content {
-        width: 100% !important;
-        gap: 10px;
-    }
-
-    .welcome-section {
-        display: none !important;
-    }
-
-    .likes-block {
-        padding: 20px 0 !important; 
-    }
-
-    .block-title {
-        font-size: 20px;
-        margin-bottom: 12px;
-    }
-
-    .block-text {
-        font-size: 14.5px;
-        line-height: 1.9;
-    }
-
-    .profile-item {
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .profile-label {
-        width: 100%;
-    }
-
-    .profile-links-zone {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .links-wrapper {
-        width: 100%;
-        gap: 10px;
-    }
-
-    .sns-link {
-        flex: 1;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .board-text-links {
-        grid-template-columns: 1fr; 
-        gap: 10px 0;
-    }
-    .work-link-text {
-        font-size: 14px;
-    }
-    /* OC 手機版適配 */
-    .oc-simple-item {
-        gap: 14px;
-        padding-bottom: 16px;
-    }
-    .oc-s-avatar {
-        width: 75px;
-        height: 75px;
-    }
-    .oc-s-desc {
-        font-size: 13px;
-        line-height: 1.7;
-    }
+    .blackboard-title { font-size: 20px; text-align: center; }
+    .blackboard-header { margin-bottom: 12px; padding-bottom: 6px; text-align: center; }
+    .chalk-grid { grid-template-columns: 1fr; gap: 5px; }
 }
