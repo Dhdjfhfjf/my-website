@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>純喫茶 BITTER - 雷點</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Serif+TC:wght@500;600;700;900&family=Yomogi&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="pixel-cup"></div>
+            <p class="loader-text">マスター調配中...</p>
+        </div>
+    </div>
+
+    <div class="menu-container">
+        
+        <header class="menu-shop-header">
+            <span class="coffee-icon">☕</span>
+            <span class="shop-name">純喫茶 ビター</span>
+            <span class="shop-sub">// BITTER BLEND</span>
+        </header>
+
+        <nav class="menu-tabs">
+            <a href="index.html" class="tab-item">ABOUT ME</a>
+            <a href="like.html" class="tab-item">LIKE</a>
+            <a href="javascript:void(0);" class="tab-item" onclick="openNotice()">OCs</a>
+            <a href="dislike.html" class="tab-item active">DISLIKE</a>
+        </nav>
+
+        <main class="menu-book">
+            <div class="menu-inner-border">
+                
+                <div class="menu-header" style="text-align: center; margin-bottom: 30px;">
+                    <p class="menu-shop-name" style="font-family: 'Yomogi', sans-serif; font-size: 13px; color: #4a5c50; letter-spacing: 2px;">PURE KISSATEN BITTER</p>
+                    <h1 class="menu-main-title" style="font-size: 22px; font-weight: 900; color: #8b1a1a; letter-spacing: 1px; margin: 5px 0;">DISLIKE & BOUNDARIES</h1>
+                    <p class="menu-subtitle" style="font-size: 13px; color: #e5989b;">店內秩序維護 ／ 禮儀須知</p>
+                </div>
+
+                <div class="menu-content-layout">
+                    
+                    <div class="menu-photo-sidebar">
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="IMG_0083.JPG" alt="避雷" onerror="this.style.display='none'; document.getElementById('dis-img-fallback').style.display='flex';">
+                                    <div id="dis-img-fallback" class="img-placeholder">☕ DISLIKE</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <p class="back-handwritten">
+                                        避雷備忘 📝<br><br>
+                                        為了保持舒適的距離，<br>
+                                        入店前請先確認右側的<br>
+                                        店內秩序指南。<br>
+                                        感謝配合。ෆ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="photo-tip">ෆ 戳戳看相片面</p>
+                    </div>
+
+                    <div class="menu-text-main">
+                        
+                        <section class="menu-section">
+                            <h3 class="menu-page-title">入店須知 ／ BOUNDARIES</h3>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <h4 class="menu-item-row">
+                                    <span class="menu-item-name">◆ 關於 交流與社交禮儀</span>
+                                    <span class="menu-item-line"></span>
+                                    <span class="menu-item-price" style="font-weight: 700; color: #8b1a1a; padding-left: 8px; background: #fcfaf2; z-index: 2; flex-shrink: 0;">✕ 伸手黨禁止</span>
+                                </h4>
+                                <div class="menu-item-desc" style="font-size: 13px; color: #4a5c50; line-height: 1.6; padding-left: 14px; margin-top: 4px;">不歡迎未經熟識就使用過度親暱的稱呼、或者劈頭就當伸手黨。</div>
+                            </div>
+
+                            <div style="margin-bottom: 10px;">
+                                <h4 class="menu-item-row">
+                                    <span class="menu-item-name">◆ 關於 同人創作與二創</span>
+                                    <span class="menu-item-line"></span>
+                                    <span class="menu-item-price" style="font-weight: 700; color: #8b1a1a; padding-left: 8px; background: #fcfaf2; z-index: 2; flex-shrink: 0;">✕ 拆逆與無斷轉載</span>
+                                </h4>
+                                <div class="menu-item-desc" style="font-size: 13px; color: #4a5c50; line-height: 1.6; padding-left: 14px; margin-top: 4px;">拒絕拆逆特定組合 CP、嚴禁無斷轉載、以及未經允許二次修改自家原創孩子。</div>
+                            </div>
+
+                            <div style="margin-bottom: 10px;">
+                                <h4 class="menu-item-row">
+                                    <span class="menu-item-name">◆ 關於 基本社交界線</span>
+                                    <span class="menu-item-line"></span>
+                                    <span class="menu-item-price" style="font-weight: 700; color: #8b1a1a; padding-left: 8px; background: #fcfaf2; z-index: 2; flex-shrink: 0;">✕ 惡意引戰禁止</span>
+                                </h4>
+                                <div class="menu-item-desc" style="font-size: 13px; color: #4a5c50; line-height: 1.6; padding-left: 14px; margin-top: 4px;">任何惡意引戰、不尊重他人喜好的行為，本喫茶店將不予接待。</div>
+                            </div>
+                        </section>
+
+                        <section class="journal-section" style="margin-bottom: 0; margin-top: 5px;">
+                            <div class="journal-badge">NOTE / 📝</div>
+                            <div class="journal-memo-block">
+                                <p class="memo-text">
+                                    彼此尊重，保持舒適的距離是最佳的相處之道。<br>
+                                    <strong>有意認識請前往置頂，感謝光臨。</strong>
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <div class="corner-oc-container" onclick="openNotice()">
+        <div class="oc-bubble">OCs 籌備中 ෆ</div>
+        <img src="your-oc-qversion.png" alt="OC 吉祥物" class="corner-oc-img" onerror="this.style.opacity='0.5';">
+    </div>
+
+    <div id="notice-overlay" class="notice-mask" onclick="closeNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                📝 <strong>店長悄悄話</strong><br><br>
+                這裡正在蓋一間存放自家孩子的閣樓。<br>
+                現階段還在整理設定集與畫稿中，<br>
+                暫時不對外供應。敬請期待！
+            </p>
+            <button class="notice-close-btn" onclick="closeNotice()">CLOSE ෆ</button>
+        </div>
+    </div>
+
+    <script>
+        function openNotice() { document.getElementById('notice-overlay').classList.add('active'); }
+        function closeNotice() { document.getElementById('notice-overlay').classList.remove('active'); }
+
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('page-loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => { loader.style.display = 'none'; }, 500);
+        });
+    </script>
+
+</body>
+</html>

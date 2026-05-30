@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DISLIKE - BITTER</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .dislike-page-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important; /* 強制絕對不換行，並排成一列 */
+            gap: 12px !important;
+            width: 100% !important;
+        }
+        .dislike-page-grid .work-bubble-item {
+            flex: 1 !important;           /* 三個氣泡均分寬度，長度一模一樣 */
+            text-align: center !important; /* 文字置中 */
+            white-space: nowrap !important;/* 防止文字在氣泡內自己斷行 */
+        }
+        /* 手機版微調，防止字體過大擠壓 */
+        @media (max-width: 576px) {
+            .dislike-page-grid {
+                gap: 8px !important;
+            }
+            .dislike-page-grid .work-bubble-item {
+                font-size: 11px !important;
+                padding: 7px 4px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fluorite-crystal-card wide-version">
+        
+        <div class="crystal-shimmer">✦</div>
+
+        <div class="nav-sticky-wrapper">
+            <nav class="embedded-nav">
+                <a href="index.html" class="nav-link">ABOUT ME</a>
+                <a href="like.html" class="nav-link">LIKE</a>
+                <a href="javascript:void(0);" class="nav-link" onclick="openNavNotice()">OCs</a>
+                <a href="dislike.html" class="nav-link active">DISLIKE</a>
+            </nav>
+        </div>
+
+        <header class="journal-header">
+            <p class="brand-sub">// ARCHIVE ． 避雷清單</p>
+            <h1 class="brand-title">BITTER & BOUNDARIES</h1>
+            <p class="brand-quote">「記錄著一部分的相處界線」</p>
+        </header>
+
+        <div class="journal-core-layout">
+            
+            <div class="journal-visual-side">
+                
+                <div class="premium-photo-frame">
+                    <picture>
+                        <source media="(max-width: 576px)" srcset="01.jpg">
+                        
+                        <img src="02.png" alt="避雷" class="journal-img" onerror="this.style.display='none'; document.getElementById('dis-img-fallback').style.display='flex';">
+                    </picture>
+                    <div id="dis-img-fallback" class="img-placeholder-text">☁ DISLIKE</div>
+                </div>
+
+                <div class="left-side-links-group">
+                    <a href="#" class="crystal-pill-btn">☁ Facebook</a>
+                    <a href="#" class="crystal-pill-btn">☁ Threads</a>
+                </div>
+            </div>
+
+            <div class="journal-info-side">
+                
+                <div class="top-note-box" style="margin-bottom: 20px;">
+                    <span class="note-badge">NOTE / 📝</span>
+                    <p class="note-paragraph">
+                        彼此尊重，保持舒適的距離是最佳的相處之道。<br>
+                        <strong>有意認識請前往置頂，感謝。</strong>
+                    </p>
+                </div>
+
+                <div class="clean-interests-zone" style="background: rgba(16, 42, 67, 0.3); padding: 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                    
+                    <section class="menu-section" style="margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 20px;">
+                        <h2 class="menu-section-title" style="margin-bottom: 12px;">MY DISLIKES ／ 避雷須知</h2>
+                        <div class="work-grid-container dislike-page-grid" style="margin-bottom: 14px;">
+                            <div class="work-bubble-item">✕ 伸手黨禁止</div>
+                            <div class="work-bubble-item">✕ 拆逆與無斷轉載</div>
+                            <div class="work-bubble-item">✕ 惡意引戰禁止</div>
+                        </div>
+                        <p style="font-size: 13.5px; color: #e2f1f8; padding-left: 4px; line-height: 1.8; font-weight: 400; letter-spacing: 0.03em;">
+                            不歡迎未經熟識就使用過度親暱的稱呼。拒絕拆逆特定組合 CP、嚴禁無斷轉載、以及未經允許二次修改自家原創孩子。
+                        </p>
+                    </section>
+
+                    <section class="menu-section" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h2 class="menu-section-title" style="margin-bottom: 12px;">ABOUT ME ／ 關於我可能雷到他人的地方</h2>
+                        <div class="work-grid-container dislike-page-grid" style="margin-bottom: 14px;">
+                            <div class="work-bubble-item">☁ 交流較慢熱</div>
+                            <div class="work-bubble-item">☁ 有特定 CP 潔癖</div>
+                            <div class="work-bubble-item">☁ 產出頻率不固定</div>
+                        </div>
+                        <p style="font-size: 13.5px; color: #e2f1f8; padding-left: 4px; line-height: 1.8; font-weight: 400; letter-spacing: 0.03em;">
+                            日常社交上有些隨性與慢熱，創作方面有個人堅持的舒適圈。如果不能接受請多包涵。
+                        </p>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="minimal-footer">
+            <span>© BITTER ALL RIGHTS RESERVED.</span>
+        </footer>
+
+    </div>
+
+    <div class="corner-oc-container" onclick="openMascotNotice()">
+        <div class="oc-bubble">LOOK MY OCs! ✦</div>
+        <img src="oc-mascot.png" alt="OCs" class="corner-oc-img" onerror="this.src='02.png';">
+    </div>
+
+
+    <div id="nav-notice-overlay" class="notice-mask" onclick="closeNavNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                📝 <strong>管理員悄悄話 (導覽列)</strong><br><br>
+                這裡正在蓋一間存放自家孩子的閣樓。<br>
+                現階段還在整理設定集與畫稿中，<br>
+                暫時不對外供應。敬請期待！
+            </p>
+            <button class="notice-close-btn" onclick="closeNavNotice()">CLOSE</button>
+        </div>
+    </div>
+
+
+    <div id="mascot-notice-overlay" class="notice-mask" onclick="closeMascotNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                ✨ <strong>哈囉！我是吉祥物！(右下角)</strong><br><br>
+                點我有驚喜嗎？其實沒有～<br>
+                只是出來跟妳打個招呼而已。<br>
+                歡迎點擊右上角的導覽頁看看其他內容！
+            </p>
+            <button class="notice-close-btn" onclick="closeMascotNotice()">CLOSE</button>
+        </div>
+    </div>
+
+
+    <script>
+        /* 🗺️ 【彈窗 A】導覽列文字彈窗控制開關 */
+        function openNavNotice() { document.getElementById('nav-notice-overlay').classList.add('active'); }
+        function closeNavNotice() { document.getElementById('nav-notice-overlay').classList.remove('active'); }
+
+        /* 🦝 【彈窗 B】吉祥物文字彈窗控制開關 */
+        function openMascotNotice() { document.getElementById('mascot-notice-overlay').classList.add('active'); }
+        function closeMascotNotice() { document.getElementById('mascot-notice-overlay').classList.remove('active'); }
+    </script>
+
+</body>
+</html>

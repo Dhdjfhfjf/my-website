@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ABOUT ME - BITTER</title>
+    <title>Likes - BITTER</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,8 @@
         </header>
 
         <nav class="menu-tabs">
-            <a href="index.html" class="tab-item active">ABOUT ME</a>
-            <a href="like.html" class="tab-item">LIKE</a>
+            <a href="index.html" class="tab-item">ABOUT ME</a>
+            <a href="like.html" class="tab-item active">LIKE</a>
             <a href="javascript:void(0);" class="tab-item" onclick="openNotice()">OCs</a>
             <a href="dislike.html" class="tab-item">DISLIKE</a>
         </nav>
@@ -39,7 +39,7 @@
             <div class="menu-inner-border">
                 
                 <div class="menu-top-quote">
-                    「歡迎光臨，請選擇您的專屬風味」
+                    「本日推薦收藏 ／ 點單確認」
                 </div>
 
                 <div class="menu-content-layout">
@@ -48,16 +48,16 @@
                         <div class="flip-card" onclick="this.classList.toggle('flipped')">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
-                                    <img src="01.jpeg" alt="個人照" onerror="this.style.display='none'; document.getElementById('index-img-fallback').style.display='flex';">
-                                    <div id="index-img-fallback" class="img-placeholder">☕ BITTER</div>
+                                    <img src="01.jpeg" alt="推し" onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='flex';">
+                                    <div id="img-fallback" class="img-placeholder">☕ LIKE</div>
                                 </div>
                                 <div class="flip-card-back">
                                     <p class="back-handwritten">
-                                        店長隨筆 📝<br><br>
-                                        今天也是適合待在<br>
-                                        喫茶店敲鍵盤的日子。<br>
-                                        希望來到這裡的你，<br>
-                                        能找到喜歡的角落。ෆ
+                                        收藏備忘 📝<br><br>
+                                        標註紅色星號（*）的<br>
+                                        皆為靈魂本命作品。<br>
+                                        滑鼠移到上面，<br>
+                                        能看見隱藏點單喔。🍒
                                     </p>
                                 </div>
                             </div>
@@ -66,29 +66,60 @@
                     </div>
 
                     <div class="menu-text-main">
-                        <h3 class="menu-page-title">自我介紹 ／ PROFILE</h3>
-                        
+                        <h3 class="menu-page-title">御品書 ／ LIKES</h3>
+
                         <section class="menu-section">
                             <h4 class="menu-item-row">
-                                <span class="menu-item-name" style="color: #8b1a1a;">關於我 ／ ABOUT</span>
+                                <span class="menu-item-name" style="color: #8b1a1a;">動畫 ／ アニメ</span>
                                 <span class="menu-item-line"></span>
                             </h4>
                             <div class="menu-grid-clean">
-                                <div class="work-item">✦ 名字：ビター</div>
-                                <div class="work-item">✦ 屬性：喫茶店愛好者</div>
-                                <div class="work-item">✦ 狀態：網頁微調中</div>
-                                <div class="work-item">✦ 核心：復古手帳美學</div>
+                                <div class="work-item" data-tip="渚薰 ෆ">✦ 新世紀福音戰士<span class="star-mark">*</span></div>
+                                <div class="work-item" data-tip="孤爪研磨 ෆ">✦ 排球少年！！<span class="star-mark">*</span></div>
+                                <div class="work-item" data-tip="兵長 ෆ">✦ 進擊的巨人<span class="star-mark">*</span></div>
+                                <div class="work-item" data-tip="吉恩 ෆ">✦ ACCA13區監察課<span class="star-mark">*</span></div>
+                                <div class="work-item">✦ 新石紀</div> 
+                                <div class="work-item" data-tip="銀時 ෆ">✦ 銀魂<span class="star-mark">*</span></div>
+                                <div class="work-item">✦ Fate 系列</div>
                             </div>
                         </section>
 
                         <section class="menu-section">
                             <h4 class="menu-item-row">
-                                <span class="menu-item-name" style="color: #8b1a1a;">聯絡方式 ／ CONTACT</span>
+                                <span class="menu-item-name" style="color: #8b1a1a;">漫畫 ／ まんが</span>
                                 <span class="menu-item-line"></span>
                             </h4>
                             <div class="menu-grid-clean">
-                                <div class="work-item">✦ Plurk：@your_plurk_id</div>
-                                <div class="work-item">✦ 其他：置頂或私訊聯繫</div>
+                                <div class="work-item">✦ 正相反的你和我</div>
+                                <div class="work-item" data-tip="野崎君 ෆ">✦ 月刊少女野崎君<span class="star-mark">*</span></div>
+                                <div class="work-item">✦ 黑影之夜</div>
+                                <div class="work-item">✦ 去見媽咪的路上</div>
+                                <div class="work-item">✦ 杖與劍的魔劍譚</div>
+                            </div>
+                        </section>
+
+                        <section class="menu-section">
+                            <h4 class="menu-item-row">
+                                <span class="menu-item-name" style="color: #8b1a1a;">書籍 ／ しょうせつ</span>
+                                <span class="menu-item-line"></span>
+                            </h4>
+                            <div class="menu-grid-clean">
+                                <div class="work-item" data-tip="小佐內 ෆ">✦ 小市民系列<span class="star-mark">*</span></div>
+                                <div class="work-item">✦ 案簿錄</div>
+                                <div class="work-item">✦ 特殊傳說</div>
+                                <div class="work-item">✦ 酒與槍</div>
+                            </div>
+                        </section>
+
+                        <section class="menu-section">
+                            <h4 class="menu-item-row">
+                                <span class="menu-item-name" style="color: #8b1a1a;">其他 ／ ゲーム</span>
+                                <span class="menu-item-line"></span>
+                            </h4>
+                            <div class="menu-grid-clean">
+                                <div class="work-item">✦ 超能力高校</div>
+                                <div class="work-item">✦ Hundred Note</div>
+                                <div class="work-item">✦ STRANGE EDEN</div>
                             </div>
                         </section>
 
@@ -96,8 +127,8 @@
                             <div class="journal-badge">NOTE / 📝</div>
                             <div class="journal-memo-block">
                                 <p class="memo-text">
-                                    歡迎來到純喫茶空間。<br>
-                                    這裡是一處存放喜好與坑單的安靜角落。<br>
+                                    隨時可能低浮，會盡可能留言互動但多數是按表符。<br>
+                                    其他內容可以點按按鈕閱讀，不推薦用電腦看因為排版很醜。<br>
                                     <strong>有意認識請前往置頂，感謝光臨。</strong>
                                 </p>
                             </div>
@@ -128,7 +159,6 @@
     </div>
 
     <script>
-        font_function = function() {};
         function openNotice() { document.getElementById('notice-overlay').classList.add('active'); }
         function closeNotice() { document.getElementById('notice-overlay').classList.remove('active'); }
 

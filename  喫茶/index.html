@@ -14,7 +14,7 @@
     <div class="menu-tabs">
         <a href="index.html" class="tab-item active">御挨拶 ／ 關於我</a>
         <a href="character.html" class="tab-item">御品書 ／ 坑單</a>
-        <a href="music.html" class="tab-item">設定集 ／ 設定</a>
+        <a href="javascript:void(0);" class="tab-item" onclick="openNotice()">設定集 ／ 設定</a>
         <a href="dislike.html" class="tab-item">注意書 ／ 雷點</a>
     </div>
 
@@ -65,15 +65,45 @@
                 </div>
             </div>
 
-            <div class="menu-footer-notice">
-                <strong>日常備忘 // NOTE</strong><br>
-                隨時可能低浮，會盡可能留言互動但多數是按表符。<br>
-                其他內容可以點按鈕閱讀，不推薦用電腦看因為排版很醜。<br>
-                有意認識請前往置頂，感謝光臨。
+            <div class="journal-section">
+                <span class="journal-badge">日常備忘 // NOTE</span>
+                <div class="journal-memo-block">
+                    <p class="memo-text">
+                        隨時可能低浮，會盡可能留言互動但多數是按表符。<br>
+                        其他內容可以點按鈕閱讀，不推薦用電腦看因為排版很醜。<br>
+                        有意認識請前往置頂，感謝光臨。
+                    </p>
+                </div>
             </div>
 
         </div>
     </div>
+    
+    <div class="corner-oc-container" onclick="openNotice()">
+        <div class="oc-bubble">OCs 籌備中 ෆ</div>
+        <img src="your-oc-qversion.png" alt="OC 吉祥物" class="corner-oc-img" onerror="this.style.opacity='0.5';">
+    </div>
+
+    <div id="notice-overlay" class="notice-mask" onclick="closeNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                📝 <strong>店長悄悄話</strong><br><br>
+                這裡正在蓋一間存放自家孩子的閣樓。<br>
+                現階段還在整理設定集與畫稿中，<br>
+                暫時不對外供應。敬請期待！
+            </p>
+            <button class="notice-close-btn" onclick="closeNotice()">CLOSE ෆ</button>
+        </div>
+    </div>
+
+    <script>
+        function openNotice() {
+            document.getElementById('notice-overlay').classList.add('active');
+        }
+        function closeNotice() {
+            document.getElementById('notice-overlay').classList.remove('active');
+        }
+    </script>
 
 </body>
 </html>

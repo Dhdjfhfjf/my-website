@@ -1,8 +1,8 @@
 /* ==========================================================================
-   📜 純喫茶 BITTER - 本格派手作菜單風格（手機版全按鈕免滑動適配版）
+   📜 純喫茶 BITTER - 本格派手作菜單風格（手帳便簽與原始虛線完美共存版）
    ========================================================================== */
 
-   * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,7 +42,7 @@ body {
     padding: 10px 20px;
     border: 2px solid #3c2a21;
     border-bottom: none;
-    border-radius: 6px 6px 0 0;
+    border-radius: 0; /* 改為直角對齊，徹底消除左側圓角露出的像素空隙 */
     transition: all 0.2s ease;
     letter-spacing: 1px;
     text-align: center;
@@ -59,6 +59,9 @@ body {
     padding-top: 14px; 
     margin-top: -4px;
     font-weight: 900;
+    border-bottom: 2px solid #fcfaf2 !important; /* 用按鈕底色蓋住大框頂線 */
+    position: relative;
+    z-index: 15;
 }
 
 /* 📜 菜單主本體 */
@@ -137,7 +140,7 @@ body {
     background: linear-gradient(to right, #8b1a1a, transparent);
 }
 
-/* 🤝 核心菜單品項排版 */
+/* 🤝 核心菜單品項排版（你原本調得非常完美的點點虛線樣式） */
 .menu-item-row {
     display: flex;
     justify-content: space-between;
@@ -195,15 +198,41 @@ body {
     padding-bottom: 6px;
 }
 
-/* 🚪 頁尾告示牌 */
-.menu-footer-notice {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #3c2a21;
-    text-align: center;
-    font-size: 13px;
+/* ==========================================================================
+   🖋️ 核心復活：你想要的 Note 手帳便簽樣式
+   ========================================================================== */
+.journal-section { 
+    position: relative; 
+    margin-top: 35px; 
+}
+
+.journal-badge {
+    display: inline-block; 
+    font-size: 11px; 
+    font-weight: 900; 
     color: #4a3c31;
-    line-height: 1.8;
+    background: #eae1d4; 
+    padding: 3px 12px; 
+    border-radius: 4px; 
+    border: 1px solid #3c2a21;
+    letter-spacing: 1px; 
+    margin-bottom: 12px;
+}
+
+.journal-memo-block {
+    background: rgba(234, 225, 212, 0.5); /* 漂亮的半透明便簽底色 */
+    padding: 20px;
+    border-radius: 6px; 
+    border-left: 4px solid #8b1a1a; /* 標誌性的左邊紅色粗實線 */
+    box-shadow: 0 4px 12px rgba(60, 42, 33, 0.03);
+    text-align: left; /* 確保內容保持左對齊 */
+}
+
+.memo-text { 
+    font-family: 'Klee One', serif; 
+    font-size: 14px; 
+    color: #4a3c31; 
+    line-height: 1.8; 
 }
 
 /* 📱 ＝手機全螢幕完美免滑動適配＝ */
@@ -212,25 +241,143 @@ body {
         padding: 30px 10px; 
     }
     
-    /* 縮減按鈕間距，確保極窄螢幕也能塞下 */
     .menu-tabs {
         gap: 4px;
         padding: 0;
+        position: -webkit-sticky; 
+        position: sticky;
+        top: 0;
+        background-color: #d9cfc1; 
+        padding-top: 10px;
+        z-index: 100;
     }
     
-    /* 核心魔法：讓 4 個按鈕平分螢幕寬度，完全不折行 */
     .tab-item {
-        flex: 1; /* 平分空間 */
-        font-size: 11px; /* 微調字體大小，防止中英文爆開 */
-        padding: 10px 4px; /* 縮減左右內距，騰出文字空間 */
-        letter-spacing: -0.5px; /* 微調字距確保完美收納 */
+        flex: 1; 
+        font-size: 11px; 
+        padding: 10px 4px; 
+        letter-spacing: -0.5px; 
+        border-radius: 0;
     }
     
     .tab-item.active {
         padding-top: 14px;
+        border-bottom: 2px solid #fcfaf2 !important; 
     }
     
     .menu-book { padding: 25px 15px; }
     .menu-inner-border { padding: 20px 12px; }
     .menu-grid-3col { grid-template-columns: repeat(2, 1fr); }
+}
+/* ==========================================================================
+   🧸 右下角固定位置吉祥物 & 籌備中彈窗樣式
+   ========================================================================== */
+
+/* 吉祥物容器固定在右下角 */
+.corner-oc-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 吉祥物圖片縮放微調 */
+.corner-oc-img {
+    width: 75px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.corner-oc-container:hover .corner-oc-img {
+    transform: scale(1.08) rotate(3deg);
+}
+
+/* 提示氣泡（滑鼠懸停時浮現） */
+.oc-bubble {
+    background: #3c2a21;
+    color: #fcfaf2;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    font-weight: 700;
+}
+.corner-oc-container:hover .oc-bubble {
+    opacity: 1;
+}
+
+/* 彈窗黑色半透明遮罩 */
+.notice-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(42, 29, 22, 0.4);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+/* 當被加入 active 類別時顯示彈窗 */
+.notice-mask.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 悄悄話手札紙張外觀 */
+.notice-paper {
+    background: #fcfaf2;
+    border: 2px solid #3c2a21;
+    padding: 30px;
+    width: 90%;
+    max-width: 330px;
+    border-left: 8px solid #8b1a1a; /* 經典深紅粗邊線 */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.notice-text {
+    font-family: "Klee One", serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4a3c31;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* 關閉按鈕 */
+.notice-close-btn {
+    background: #3c2a21;
+    color: #fcfaf2;
+    border: none;
+    padding: 6px 20px;
+    font-family: "Klee One", serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.notice-close-btn:hover {
+    background: #8b1a1a;
+}
+
+/* 手機版適配微調 */
+@media (max-width: 576px) {
+    .corner-oc-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    .corner-oc-img {
+        width: 60px;
+    }
 }

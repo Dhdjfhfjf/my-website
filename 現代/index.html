@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT ME - BITTER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="fluorite-crystal-card wide-version">
+        
+        <div class="crystal-shimmer">✦</div>
+        
+        <div class="nav-sticky-wrapper">
+            <nav class="embedded-nav">
+                <a href="index.html" class="nav-link active">ABOUT ME</a>
+                <a href="like.html" class="nav-link">LIKE</a>
+                <a href="javascript:void(0);" class="nav-link" onclick="openNavNotice()">OCs</a>
+                <a href="dislike.html" class="nav-link">DISLIKE</a>
+            </nav>
+        </div>
+
+        <header class="journal-header">
+            <p class="brand-sub">// ARCHIVE . 個人主頁</p>
+            <h1 class="brand-title">BITTER & PROFILE</h1>
+            <p class="brand-quote">「夏天溶解在我們若無其事的寒暄裡」</p>
+        </header>
+
+        <div class="journal-core-layout">
+            
+            <div class="journal-visual-side">
+                
+                <div class="premium-photo-frame">
+                    <picture>
+                        <source media="(max-width: 576px)" srcset="01.jpg">
+                        <img src="02.png" alt="個人肖像" class="journal-img" onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='flex';">
+                    </picture>
+                    <div id="img-fallback" class="img-placeholder-text">☕ BITTER</div>
+                </div>
+
+                <div class="left-side-links-group">
+                    <a href="https://www.facebook.com/share/1GRkbWFGGC/?mibextid=wwXIfr" target="_blank" class="crystal-pill-btn">
+                        <span class="btn-icon">☕</span> Facebook
+                    </a>
+                    <a href="https://www.threads.com/@kopfkino1110?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="crystal-pill-btn">
+                        <span class="btn-icon">☕</span> Threads
+                    </a>
+                </div>
+            </div>
+
+            <div class="journal-info-side">
+                
+                <div class="top-note-box">
+                    <span class="note-badge">NOTE // 今日手記</span>
+                    <p class="note-paragraph">
+                        冰滴深焙 ＋ 微量夏日感傷。<br>
+                        適合一邊敲著鍵盤，一邊記錄著沒落的日常。
+                    </p>
+                </div>
+
+                <div class="info-horizontal-card">
+                    <h2 class="card-inside-title">PROFILE ／ 檔案</h2>
+                    
+                    <div class="horizontal-row">
+                        <span class="row-label">暱稱</span>
+                        <span class="row-value">BITTER / ビター</span>
+                    </div>
+                    <div class="horizontal-row">
+                        <span class="row-label">版面</span>
+                        <span class="row-value">日常 ・ 委託發佈 ・ 推角</span>
+                    </div>
+                    <div class="horizontal-row">
+                        <span class="row-label">狀態</span>
+                        <span class="row-value">開國準備中 💫 (一年B班)</span>
+                    </div>
+                </div>
+
+                <div class="info-horizontal-card">
+                    <h2 class="card-inside-title">LINKS ／ 聯絡</h2>
+                    
+                    <div class="horizontal-row">
+                        <span class="row-label">Facebook</span>
+                        <span class="row-value"><a href="https://www.facebook.com/share/1GRkbWFGGC/?mibextid=wwXIfr" target="_blank" style="color: var(--sun-cream); text-decoration: underline;">臉書書信 ☕</a></span>
+                    </div>
+                    <div class="horizontal-row">
+                        <span class="row-label">Threads</span>
+                        <span class="row-value"><a href="https://www.threads.com/@kopfkino1110?igshid=NTc4MTIwNjQ2YQ==" target="_blank" style="color: var(--sun-cream); text-decoration: underline;">脆上呢喃 ☕</a></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="minimal-footer">
+            <span>© BITTER ALL RIGHTS RESERVED.</span>
+        </footer>
+
+    </div>
+    
+    <div class="corner-oc-container" onclick="openMascotNotice()">
+        <div class="oc-bubble">OCs 籌備中 EOF</div>
+        <img src="吉祥物.png" alt="OC 吉祥物" class="corner-oc-img" onerror="this.style.opacity='0.4';">
+    </div>
+
+
+    <div id="nav-notice-overlay" class="notice-mask" onclick="closeNavNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                📝 <strong>店長悄悄話 (導覽列)</strong><br><br>
+                這裡正在蓋一間存放自家孩子的閣樓。<br>
+                現階段還在整理設定集與畫稿中，<br>
+                暫時不對外供應。敬請期待！
+            </p>
+            <button class="notice-close-btn" onclick="closeNavNotice()">CLOSE ෆ</button>
+        </div>
+    </div>
+
+
+    <div id="mascot-notice-overlay" class="notice-mask" onclick="closeMascotNotice()">
+        <div class="notice-paper" onclick="event.stopPropagation()">
+            <p class="notice-text">
+                ✨ <strong>哈囉！我是吉祥物！(右下角)</strong><br><br>
+                點我有驚喜嗎？其實沒有～<br>
+                只是出來跟妳打個招呼而已。<br>
+                歡迎點擊右上角的導覽頁看看其他內容！
+            </p>
+            <button class="notice-close-btn" onclick="closeMascotNotice()">CLOSE ෆ</button>
+        </div>
+    </div>
+
+
+    <script>
+        /* 🗺️ 【彈窗 A】導覽列文字彈窗控制開關 */
+        function openNavNotice() { document.getElementById('nav-notice-overlay').classList.add('active'); }
+        function closeNavNotice() { document.getElementById('nav-notice-overlay').classList.remove('active'); }
+
+        /* 🦝 【彈窗 B】吉祥物文字彈窗控制開關 */
+        function openMascotNotice() { document.getElementById('mascot-notice-overlay').classList.add('active'); }
+        function closeMascotNotice() { document.getElementById('mascot-notice-overlay').classList.remove('active'); }
+    </script>
+
+</body>
+</html>
